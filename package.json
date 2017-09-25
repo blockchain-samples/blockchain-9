@@ -2,10 +2,11 @@
   "name": "blockchain",
   "version": "1.0.0",
   "description": "My First blockchain",
-  "main": "dist/src/main.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/src/main.js"
+    "tsc": "tsc",
+    "build": "rimraf dist/",
+    "start": "npm run build && npm run tsc && node dist/index.js"
   },
   "author": "Vytautas",
   "license": "ISC",
@@ -15,9 +16,11 @@
     "crypto-js": "^3.1.6",
     "express": "~4.11.1",
     "rimraf": "^2.6.2",
+    "typescript": "^2.5.2",
     "ws": "^1.1.0"
   },
   "devDependencies": {
+    "@types/node": "^8.0.31",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0"
   }

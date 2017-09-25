@@ -1,4 +1,4 @@
-import Block from './block';
+import { Block } from './block';
 import * as CryptoJS from "crypto-js";
 
 export class Helper {
@@ -48,5 +48,20 @@ export class Helper {
 	
 	private calculateHashForBlock = (block) => {
 		return this.calculateHash(block.index, block.previousHash, block.timestamp, block.data);
+	};
+
+	public isValidChain = (blockchainToValidate) => {
+		if (JSON.stringify(blockchainToValidate[0]) !== JSON.stringify(this.getGenesisBlock())) {
+			return false;
+		}
+		const tempBlocks = [blockchainToValidate[0]];
+		for (let i = 1; i < blockchainToValidate.length; i++) {
+			if (this.isValidNewBlock(blockchainToValidate[i], tempBlocks[i - 1])) {
+				tempBlocks.push(blockchainToValidate[i]);
+			} else {
+				return false;
+			}
+		}
+		return true;
 	};
 }
