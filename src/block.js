@@ -1,4 +1,4 @@
-class Block {
+export default class Block {
 	constructor(index, previousHash, timestamp, data, hash) {
 		this.index = index;
 		this.previousHash = previousHash.toString();
